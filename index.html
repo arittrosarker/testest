@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Stand With Palestine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2 class="verify-heading">Verify that you're human</h2>
+
+  <div class="box">
+    <label class="checkbox-label">
+      <input type="checkbox" id="verifyBox" />
+      <span>I stand with Palestine</span>
+    </label>
+    
+    <div class="ceasefire-container">
+      <img src="images.png" alt="Ceasefire Logo" class="logo" />
+      <div>CEASEFIRE now</div>
+    </div>
+  </div>
+
+  <div class="counter" id="counter">Verified Humans: Loading...</div>
+  <div class="credit">created by C6H6</div>
+
+  <!-- 🎨 Protest Art Slider -->
+  <div class="art-slider">
+    <div class="art-track">
+      <!-- Original set -->
+      <img src="art/1.jpg" alt="Protest Art 1" />
+      <img src="art/2.jpg" alt="Protest Art 2" />
+      <img src="art/3.jpg" alt="Protest Art 3" />
+      <img src="art/4.jpg" alt="Protest Art 4" />
+      <img src="art/5.jpg" alt="Protest Art 5" />
+      <img src="art/6.jpg" alt="Protest Art 6" />
+      <img src="art/7.jpg" alt="Protest Art 7" />
+      <img src="art/8.jpg" alt="Protest Art 8" />
+      <img src="art/9.jpg" alt="Protest Art 9" />
+      <img src="art/10.jpg" alt="Protest Art 10" />
+      <img src="art/11.jpg" alt="Protest Art 11" />
+      <img src="art/12.jpg" alt="Protest Art 12" />
+      <img src="art/13.jpg" alt="Protest Art 13" />
+
+      <!-- Duplicate set -->
+      <img src="art/1.jpg" alt="Protest Art 1" />
+      <img src="art/2.jpg" alt="Protest Art 2" />
+      <img src="art/3.jpg" alt="Protest Art 3" />
+      <img src="art/4.jpg" alt="Protest Art 4" />
+      <img src="art/5.jpg" alt="Protest Art 5" />
+      <img src="art/6.jpg" alt="Protest Art 6" />
+      <img src="art/7.jpg" alt="Protest Art 7" />
+      <img src="art/8.jpg" alt="Protest Art 8" />
+      <img src="art/9.jpg" alt="Protest Art 9" />
+      <img src="art/10.jpg" alt="Protest Art 10" />
+      <img src="art/11.jpg" alt="Protest Art 11" />
+      <img src="art/12.jpg" alt="Protest Art 12" />
+      <img src="art/13.jpg" alt="Protest Art 13" />
+    </div>
+  </div>
+
+  <!-- Floating Button to Open PFP Modal -->
+  <button id="openPFPModal" class="pfp-toggle-btn">🇵🇸 Frame Your PFP</button>
+
+  <!-- PFP Modal -->
+  <div id="pfpModal" class="modal">
+    <div class="modal-content">
+      <span id="pfpClose" class="close">&times;</span>
+      <h2>Frame Your Profile Picture</h2>
+      <input type="file" id="imageUpload" accept="image/*">
+      <br>
+      <canvas id="previewCanvas" width="1024" height="1024"></canvas>
+      <br>
+      <button id="downloadBtn" disabled>Download Framed PFP</button>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
