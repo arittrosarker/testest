@@ -102,7 +102,7 @@ input[type="checkbox"] {
 /* Modal container (covers full screen) */
 .modal {
   display: none; /* Hidden by default */
-  position: fixed; 
+  position: fixed;
   z-index: 1000; 
   left: 0;
   top: 0;
@@ -112,9 +112,10 @@ input[type="checkbox"] {
   background-color: rgba(0,0,0,0.8); /* Dim/blur background */
 }
 
+/* Centered modal content */
 .modal-content {
   background-color: #fff;
-  margin: 5% auto;
+  margin: auto; /* Center horizontally */
   padding: 20px;
   border-radius: 10px;
   position: relative;
@@ -122,9 +123,12 @@ input[type="checkbox"] {
   width: 600px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   text-align: center;
+  z-index: 1001; /* Higher than the floating button */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical alignment */
 }
 
-.modal-content h2 {
+/.modal-content h2 {
   margin-top: 0;
 }
 
