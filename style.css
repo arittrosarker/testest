@@ -36,7 +36,8 @@ body {
   color: #555;
 }
 
-/* Verify heading */
+/* ... existing styles for other elements ... */
+
 .verify-heading {
   font-size: 1.4em;
   font-weight: bold;
@@ -157,6 +158,9 @@ input[type="checkbox"] {
   height: 100%;
   overflow: auto; 
   background-color: rgba(0,0,0,0.8);
+  display: flex; /* Added to center content */
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
@@ -165,17 +169,18 @@ input[type="checkbox"] {
   padding: 20px;
   border-radius: 10px;
   position: relative;
-  max-width: 90%;
-  width: 600px;
+  width: 90%; /* Responsive for mobile */
+  max-width: 400px; /* Smaller for PCs */
+  max-height: 80vh; /* Limit height */
+  overflow-y: auto; /* Scroll if content overflows */
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   text-align: center;
-  z-index: 1001;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .modal-content h2 {
-  margin-top: 0;
+  margin: 0 0 15px 0; /* Adjusted margin to ensure visibility */
+  font-size: 1.5em; /* Ensure readable size */
+  color: #000; /* Ensure contrast against white background */
 }
 
 .modal-content input[type="file"] {
@@ -193,14 +198,14 @@ input[type="checkbox"] {
   position: absolute;
   top: 10px;
   right: 15px;
-  color: #aaa;
+  color: #000; /* Changed to black for better visibility */
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
 }
 
 .close:hover {
-  color: #000;
+  color: #555; /* Slightly darker on hover */
 }
 
 .pfp-toggle-btn {
