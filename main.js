@@ -72,7 +72,7 @@ const ctx = previewCanvas.getContext('2d');
 
 // Open the modal when the toggle button is clicked
 pfpToggleBtn.addEventListener('click', () => {
-  pfpModal.style.display = 'block';
+  pfpModal.style.display = 'flex'; // Use 'flex' to center content
 });
 
 // Close the modal when the close button is clicked
@@ -134,7 +134,6 @@ window.copyEmail = function () {
   navigator.clipboard.writeText(email).then(() => {
     const confirm = document.getElementById("copy-confirm");
     confirm.style.display = "inline";
-
     setTimeout(() => {
       confirm.style.display = "none";
     }, 2000);
