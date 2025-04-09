@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>I Stand With Palestine</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="pfp.png" as="image"> <!-- Preload frame image -->
 </head>
 <body>
+
+  <div class="intro">
+    <h1>I Stand With Palestine</h1>
+    <p>Join us in raising awareness for Palestine through art and action. Verify your support and explore the protest art below.</p>
+  </div>
 
   <h2 class="verify-heading">Verify that you're human</h2>
 
@@ -25,56 +31,44 @@
   <div class="counter" id="counter">Verified Humans: Loading...</div>
   <div class="credit">created by C6H6</div>
 
-  <!-- 🎨 Protest Art Slider -->
+  <!-- Protest Art Slider (no navigation buttons) -->
   <div class="art-slider">
-    <div class="art-track">
-      <!-- Original set -->
-      <img src="art/1.jpg" alt="Protest Art 1" />
-      <img src="art/2.jpg" alt="Protest Art 2" />
-      <img src="art/3.jpg" alt="Protest Art 3" />
-      <img src="art/4.jpg" alt="Protest Art 4" />
-      <img src="art/5.jpg" alt="Protest Art 5" />
-      <img src="art/6.jpg" alt="Protest Art 6" />
-      <img src="art/7.jpg" alt="Protest Art 7" />
-      <img src="art/8.jpg" alt="Protest Art 8" />
-      <img src="art/9.jpg" alt="Protest Art 9" />
-      <img src="art/10.jpg" alt="Protest Art 10" />
-      <img src="art/11.jpg" alt="Protest Art 11" />
-      <img src="art/12.jpg" alt="Protest Art 12" />
-      <img src="art/13.jpg" alt="Protest Art 13" />
-
-      <!-- Duplicate set -->
-      <img src="art/1.jpg" alt="Protest Art 1" />
-      <img src="art/2.jpg" alt="Protest Art 2" />
-      <img src="art/3.jpg" alt="Protest Art 3" />
-      <img src="art/4.jpg" alt="Protest Art 4" />
-      <img src="art/5.jpg" alt="Protest Art 5" />
-      <img src="art/6.jpg" alt="Protest Art 6" />
-      <img src="art/7.jpg" alt="Protest Art 7" />
-      <img src="art/8.jpg" alt="Protest Art 8" />
-      <img src="art/9.jpg" alt="Protest Art 9" />
-      <img src="art/10.jpg" alt="Protest Art 10" />
-      <img src="art/11.jpg" alt="Protest Art 11" />
-      <img src="art/12.jpg" alt="Protest Art 12" />
-      <img src="art/13.jpg" alt="Protest Art 13" />
+    <div class="art-track" id="artTrack">
+      <!-- Images will be dynamically added here via JavaScript -->
     </div>
   </div>
 
   <!-- Floating Button to Open PFP Modal -->
-  <button id="openPFPModal" class="pfp-toggle-btn">🇵🇸 Frame Your PFP</button>
+  <button id="openPFPModal" class="pfp-toggle-btn">🇵🇸 Frame Your PFP with Palestine Flag</button>
 
   <!-- PFP Modal -->
   <div id="pfpModal" class="modal">
     <div class="modal-content">
-      <span id="pfpClose" class="close">&times;</span>
+      <button id="pfpClose" class="close">×</button>
       <h2>Frame Your Profile Picture</h2>
       <input type="file" id="imageUpload" accept="image/*">
       <br>
-      <canvas id="previewCanvas" width="1024" height="1024"></canvas>
+      <canvas id="previewCanvas" width="512" height="512"></canvas>
       <br>
       <button id="downloadBtn" disabled>Download Framed PFP</button>
     </div>
   </div>
+
+  <p class="submit-artwork">
+    Submit your artwork at 
+    <span class="copy-email" onclick="copyEmail()">arittrosarker2007@gmail.com</span>
+    <span id="copy-confirm" class="copied-text">Copied!</span>
+  </p>
+
+  <!-- Artist Credits Footer -->
+  <footer class="artist-footer">
+    <details>
+      <summary>Artist Credits</summary>
+      <div>
+        Tasmia Laiba, Mahfujur Rahman, Tanjila Sultana, Swapy, Radia Mounis, Shahriar Turzo, Tas Doodle, Tabu Art, Arittro Sarker, NH's Art Studio, Alif's Cartoon, Faiju's art, Tahsin Rupak, Ahnaf Hasan, Rubayan Hassan, Lamia Promi
+      </div>
+    </details>
+  </footer>
 
   <script type="module" src="main.js"></script>
 </body>

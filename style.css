@@ -3,6 +3,38 @@ body {
   background: #fff;
   text-align: center;
   padding: 50px 20px;
+  padding-bottom: 100px;
+}
+
+/* Fade-in animation */
+.intro, .verify-heading, .box {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+.intro { animation-delay: 0.2s; }
+.verify-heading { animation-delay: 0.4s; }
+.box { animation-delay: 0.6s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Introduction */
+.intro {
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.intro h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+.intro p {
+  font-size: 1em;
+  color: #555;
 }
 
 .verify-heading {
@@ -32,6 +64,10 @@ body {
 
 input[type="checkbox"] {
   transform: scale(1.2);
+  cursor: pointer;
+}
+input[type="checkbox"]:hover {
+  transform: scale(1.3);
 }
 
 .logo {
@@ -52,16 +88,17 @@ input[type="checkbox"] {
   margin-top: 20px;
   font-size: 1.2em;
   font-weight: bold;
-  color: green;
+  color: darkgreen;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .credit {
   margin-top: 25px;
   font-size: 0.8em;
-  color: #888;
+  color: #666;
 }
 
-/* 🔁 Protest Art Slider */
+/* Art Slider */
 .art-slider {
   width: 100%;
   overflow: hidden;
@@ -90,32 +127,26 @@ input[type="checkbox"] {
   100% { transform: translateX(-50%); }
 }
 
-/* Optional: Pause on hover */
 .art-slider:hover .art-track {
   animation-play-state: paused;
 }
 
-/* -----------------------------
-   Modal and PFP Feature Styles
-------------------------------*/
-
-/* Modal container (covers full screen) */
+/* Modal and PFP Feature */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
-  z-index: 1000; 
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.8); /* Dim/blur background */
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
 }
 
-/* Centered modal content */
 .modal-content {
   background-color: #fff;
-  margin: auto; /* Center horizontally */
+  margin: auto;
   padding: 20px;
   border-radius: 10px;
   position: relative;
@@ -123,27 +154,10 @@ input[type="checkbox"] {
   width: 600px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   text-align: center;
-  z-index: 1001; /* Higher than the floating button */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust vertical alignment */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-/.modal-content h2 {
-  margin-top: 0;
-}
-
-.modal-content input[type="file"] {
-  margin: 20px 0;
-}
-
-.modal-content canvas {
-  width: 100%;
-  height: auto;
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-}
-
-/* Close button (top right of modal) */
 .close {
   position: absolute;
   top: 10px;
@@ -152,13 +166,13 @@ input[type="checkbox"] {
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  background: none;
+  border: none;
 }
-
 .close:hover {
   color: #000;
 }
 
-/* Floating PFP Toggle Button */
 .pfp-toggle-btn {
   position: fixed;
   top: 20px;
@@ -171,9 +185,103 @@ input[type="checkbox"] {
   font-size: 1em;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  z-index: 1001;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.pfp-toggle-btn:hover {
+  transform: scale(1.05);
 }
 
-.pfp-toggle-btn:hover {
-  opacity: 0.9;
+.submit-artwork {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.copy-email {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.copy-email:hover {
+  color: #0056b3;
+}
+
+.copied-text {
+  margin-left: 10px;
+  color: green;
+  font-size: 0.85em;
+  display: none;
+}
+
+/* Artist Credits Footer */
+.artist-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #111;
+  color: #eee;
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid #333;
+}
+
+.artist-footer details {
+  display: inline-block;
+  text-align: left;
+}
+
+.artist-footer summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.artist-footer summary::after {
+  content: "▼";
+  font-size: 0.8em;
+  margin-left: 5px;
+  transition: transform 0.3s;
+}
+
+.artist-footer details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.artist-footer details div {
+  margin-top: 10px;
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .intro h1 {
+    font-size: 1.5em;
+  }
+  .intro p {
+    font-size: 0.9em;
+  }
+  .box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .ceasefire-container {
+    margin-top: 10px;
+  }
+  .art-track img {
+    width: 100%;
+    height: auto;
+  }
+  .pfp-toggle-btn {
+    top: 10px;
+    right: 10px;
+    font-size: 0.9em;
+  }
 }

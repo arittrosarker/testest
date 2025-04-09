@@ -45,6 +45,14 @@ checkbox.addEventListener("change", () => {
     checkbox.disabled = true;
     localStorage.setItem("palestine_verified", "true");
 
+    // Add confirmation message
+    const confirmation = document.createElement('div');
+    confirmation.textContent = 'Thank you for standing with Palestine!';
+    confirmation.style.color = 'darkgreen';
+    confirmation.style.marginTop = '10px';
+    confirmation.style.fontSize = '0.9em';
+    checkbox.parentElement.appendChild(confirmation);
+
     // Safely increment the counter
     runTransaction(counterRef, (current) => {
       return (current || 0) + 1;
@@ -52,11 +60,40 @@ checkbox.addEventListener("change", () => {
   }
 });
 
-/* ---------------------------
-   "Frame Your PFP" Feature
----------------------------- */
+// Randomize and Populate Art Slider
+const artTrack = document.getElementById('artTrack');
+const imageCount = 16; // Total unique images
 
-// DOM Elements for PFP Feature
+// Function to shuffle array (Fisher-Yates shuffle)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Generate a shuffled array of image indices (1 to 16)
+const imageIndices = shuffleArray([...Array(imageCount).keys()].map(i => i + 1));
+
+// Populate the art-track with shuffled images (duplicated for infinite loop)
+imageIndices.forEach(index => {
+  const img = document.createElement('img');
+  img.src = `art/${index}.jpg`;
+  img.alt = `Protest Art ${index}`;
+  img.loading = 'lazy';
+  artTrack.appendChild(img);
+});
+// Duplicate the shuffled set for infinite loop
+imageIndices.forEach(index => {
+  const img = document.createElement('img');
+  img.src = `art/${index}.jpg`;
+  img.alt = `Protest Art ${index}`;
+  img.loading = 'lazy';
+  artTrack.appendChild(img);
+});
+
+// PFP Modal Functionality
 const pfpToggleBtn = document.getElementById('openPFPModal');
 const pfpModal = document.getElementById('pfpModal');
 const pfpClose = document.getElementById('pfpClose');
@@ -65,17 +102,17 @@ const previewCanvas = document.getElementById('previewCanvas');
 const downloadBtn = document.getElementById('downloadBtn');
 const ctx = previewCanvas.getContext('2d');
 
-// Open the modal when the toggle button is clicked
+// Open the modal
 pfpToggleBtn.addEventListener('click', () => {
   pfpModal.style.display = 'block';
 });
 
-// Close the modal when the close button is clicked
+// Close the modal
 pfpClose.addEventListener('click', () => {
   pfpModal.style.display = 'none';
 });
 
-// Optional: Close modal when clicking outside the modal content area
+// Close modal on outside click
 window.addEventListener('click', (event) => {
   if (event.target === pfpModal) {
     pfpModal.style.display = 'none';
@@ -85,26 +122,39 @@ window.addEventListener('click', (event) => {
 // Handle image upload & processing
 imageInput.addEventListener('change', function(e) {
   const file = e.target.files[0];
-  if (file && file.type.startsWith('image/')) {
+  if (file) {
+    if (!file.type.startsWith('image/')) {
+      alert('Please upload a valid image file (e.g., PNG, JPEG).');
+      imageInput.value = '';
+      return;
+    }
     const reader = new FileReader();
     reader.onload = function(event) {
       const img = new Image();
       img.onload = function() {
-        // Calculate dimensions for a center-cropped square
+        // Set responsive canvas size
+        const canvasSize = Math.min(window.innerWidth * 0.8, 512);
+        previewCanvas.width = canvasSize;
+        previewCanvas.height = canvasSize;
+
         let size = Math.min(img.width, img.height);
         let sx = (img.width - size) / 2;
         let sy = (img.height - size) / 2;
 
-        // Clear the canvas and draw the cropped image scaled to 1024x1024
         ctx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
         ctx.drawImage(img, sx, sy, size, size, 0, 0, previewCanvas.width, previewCanvas.height);
 
-        // Overlay the prepared transparent frame (pfp.png)
         const frameImg = new Image();
         frameImg.src = 'pfp.png';
+        downloadBtn.textContent = 'Loading frame...';
         frameImg.onload = function() {
           ctx.drawImage(frameImg, 0, 0, previewCanvas.width, previewCanvas.height);
-          downloadBtn.disabled = false; // Enable download once ready
+          downloadBtn.disabled = false;
+          downloadBtn.textContent = 'Download Framed PFP';
+        };
+        frameImg.onerror = function() {
+          alert('Failed to load the frame image. Please try again later.');
+          downloadBtn.textContent = 'Download Framed PFP';
         };
       };
       img.src = event.target.result;
@@ -113,7 +163,7 @@ imageInput.addEventListener('change', function(e) {
   }
 });
 
-// Download the final image when the button is clicked
+// Download the framed PFP
 downloadBtn.addEventListener('click', () => {
   const dataURL = previewCanvas.toDataURL('image/png');
   const a = document.createElement('a');
@@ -123,3 +173,15 @@ downloadBtn.addEventListener('click', () => {
   a.click();
   document.body.removeChild(a);
 });
+
+// Copy email function
+window.copyEmail = function () {
+  const email = "arittrosarker2007@gmail.com";
+  navigator.clipboard.writeText(email).then(() => {
+    const confirm = document.getElementById("copy-confirm");
+    confirm.style.display = "inline";
+    setTimeout(() => {
+      confirm.style.display = "none";
+    }, 2000);
+  });
+};
